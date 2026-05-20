@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Além do Cemitério - Fichas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>ALÉM DO CEMITÉRIO</h1>
+      <button id="btn-minhas-fichas" class="btn">Minhas Fichas</button>
+    </header>
+
+    <!-- TELA LISTA -->
+    <div id="lista-screen" class="screen active">
+      <div class="lista-container">
+        <h2>Minhas Fichas</h2>
+        <button id="btn-nova-ficha" class="btn-nova">+ Nova Ficha</button>
+        <div id="lista-fichas"></div>
+      </div>
+    </div>
+
+    <!-- TELA FICHA -->
+    <div id="ficha-screen" class="screen">
+      <div class="ficha-content">
+        <button id="btn-voltar" class="btn-voltar">← Minhas Fichas</button>
+
+        <div id="ficha-nome" class="ficha-nome" contenteditable="true">
+          Nova Ficha
+        </div>
+
+        <!-- ABAS -->
+        <div class="aba-container">
+          <button class="aba-btn active" data-aba="inicio">PV e MENT</button>
+          <button class="aba-btn" data-aba="atributos">Atributos</button>
+          <button class="aba-btn" data-aba="habilidades">Habilidades</button>
+          <button class="aba-btn" data-aba="classe">Classe</button>
+          <button class="aba-btn" data-aba="inventario">Inventário</button>
+        </div>
+
+        <!-- ABA INICIO -->
+        <div id="aba-inicio" class="aba-conteudo active">
+          <div class="vida-ment-container">
+            <div class="extra-container">
+              <div class="extra-box bloqueio-box">
+                <div class="vida-title">BLOQUEIO</div>
+                <div class="extra-content">
+                  <span class="label">Base</span>
+                  <span id="bloqueio-main" class="main-value">0</span>
+
+                  <span class="label">Total</span>
+                  <span id="bloqueio-sec" class="secondary-value">0</span>
+                </div>
+              </div>
+
+              <div class="extra-box deslocamento-box">
+                <div class="vida-title">DESLOCAMENTO</div>
+                <div class="extra-content">
+                  <span class="label">Base</span>
+                  <span id="deslocamento-main" class="main-value">0</span>
+
+                  <span class="label">Total</span>
+                  <span id="deslocamento-sec" class="secondary-value">0</span>
+                </div>
+              </div>
+            </div>
+            <div class="vida-box">
+              <div class="vida-title">PV</div>
+              <div class="vida-valores">
+                <span id="pv-atual" contenteditable="true">0</span>
+                <span class="barra"> / </span>
+                <span id="pv-total" contenteditable="true">0</span>
+              </div>
+              <div class="dano-title">Dano Recebido</div>
+              <div
+                class="big-value damage-box"
+                id="dano"
+                contenteditable="true"
+              >
+                0
+              </div>
+            </div>
+
+            <div class="ment-box">
+              <div class="vida-title">MENT</div>
+              <div class="vida-valores">
+                <span id="ment-atual" contenteditable="true">0</span>
+                <span class="barra"> / </span>
+                <span id="ment-total" contenteditable="true">0</span>
+              </div>
+              <div class="dano-title">Estabilidade Perdido</div>
+              <div
+                class="big-value damage-box"
+                id="estab"
+                contenteditable="true"
+              >
+                0
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABA ATRIBUTOS -->
+        <div id="aba-atributos" class="aba-conteudo">
+          <div class="atributos-background">
+            <img src="assets/Atributos.png" class="bg-image" />
+
+            <div class="attr-input des" data-field="desempenho">
+              <div class="main-value" contenteditable="true">0</div>
+              <div class="secondary-value" id="des-sec">0</div>
+            </div>
+
+            <div class="attr-input pon" data-field="potencia">
+              <div class="main-value" contenteditable="true">0</div>
+              <div class="secondary-value" id="pot-sec">0</div>
+            </div>
+
+            <div class="attr-input con" data-field="conhecimento">
+              <div class="main-value" contenteditable="true">0</div>
+              <div class="secondary-value" id="con-sec">0</div>
+            </div>
+
+            <div class="attr-input inf" data-field="influencia">
+              <div class="main-value" contenteditable="true">0</div>
+              <div class="secondary-value" id="inf-sec">0</div>
+            </div>
+
+            <div class="attr-input res" data-field="resiliencia">
+              <div class="main-value" contenteditable="true">0</div>
+              <div class="secondary-value" id="res-sec">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABA HABILIDADES -->
+        <div id="aba-habilidades" class="aba-conteudo">
+          <div class="box full">
+            <div class="title">HABILIDADES DE PERSONAGEM</div>
+
+            <div class="habilidades-container"></div>
+          </div>
+        </div>
+
+        <!-- ABA CLASSE -->
+        <div id="aba-classe" class="aba-conteudo">
+          <div class="box full">
+            <div class="title">CLASSE</div>
+
+            <div class="classe-section">
+              <div class="sub-title">Classes de Personagem</div>
+              <div class="opcoes-grid" id="lista-classes">
+                <div class="opcao" data-valor="Valente">Valente</div>
+                <div class="opcao" data-valor="Impaciente">Impaciente</div>
+                <div class="opcao" data-valor="Psicótico">Psicótico</div>
+                <div class="opcao" data-valor="Caladão">Caladão</div>
+                <div class="opcao" data-valor="Perdedor">Perdedor</div>
+                <div class="opcao" data-valor="Delicado">Delicado</div>
+              </div>
+            </div>
+
+            <div class="classe-section">
+              <div class="sub-title">Tipo de Personagem</div>
+              <div class="opcoes-grid" id="lista-tipos">
+                <div class="opcao" data-valor="Valentão - Brigão">
+                  Valentão - Brigão
+                </div>
+                <div class="opcao" data-valor="Famosinho - Popular">
+                  Famosinho - Popular
+                </div>
+                <div class="opcao" data-valor="Nerd - Intelectual">
+                  Nerd - Intelectual
+                </div>
+                <div class="opcao" data-valor="Desleixado - Calmo">
+                  Desleixado - Calmo
+                </div>
+                <div class="opcao" data-valor="Excluído - Distante">
+                  Excluído - Distante
+                </div>
+                <div class="opcao" data-valor="Estagiário - Auxiliar">
+                  Estagiário - Auxiliar
+                </div>
+                <div class="opcao" data-valor="Monitor - Vigilante">
+                  Monitor - Vigilante
+                </div>
+                <div class="opcao" data-valor="Mesquinho - Metido">
+                  Mesquinho - Metido
+                </div>
+                <div class="opcao" data-valor="Repetente - Atrasado">
+                  Repetente - Atrasado
+                </div>
+                <div class="opcao" data-valor="Atleta - Esforçado">
+                  Atleta - Esforçado
+                </div>
+              </div>
+            </div>
+
+            <div class="box resumo-box">
+              <div class="title">Classe escolhida</div>
+              <div id="resumo-classe" class="resumo-conteudo"></div>
+            </div>
+
+            <div class="box resumo-box">
+              <div class="title">Tipo de Personagem</div>
+              <div id="resumo-tipo" class="resumo-conteudo"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABA INVENTARIO -->
+        <div id="aba-inventario" class="aba-conteudo">
+          <div class="box full">
+            <div class="title">INVENTÁRIO</div>
+
+            <div class="inventario-container">
+              <div class="inventario-header">
+                <span>Item</span>
+                <span>Qtd</span>
+                <span>Peso</span>
+                <span>Grau</span>
+                <span>Usos</span>
+              </div>
+
+              <div class="inventario-lista"></div>
+              <button id="btn-add-item" class="btn-add-item">
+                + Adicionar Item
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
